@@ -1,0 +1,36 @@
+<html>
+<head>
+<link rel="stylesheet" href="pysda.css">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>
+function CPU()
+{
+let x=prompt("enter your date of birth (YYYY-MM-DD)","1970-01-01");
+const DOB=new Date(x);
+const minute=1000*60;
+const hour=minute*60;
+const day=hour*24;
+const year=day*365;
+const t=Date.now()-DOB.getTime();
+let YEAR=Math.floor(t/year);
+let MONTH=Math.floor((((t/year)-YEAR)*365)/31);
+let DAY=Math.floor((t/day)-(YEAR*365)-(MONTH*31));
+document.getElementById("x").innerHTML=YEAR+" years,<br>"+MONTH+" months,<br>"+DAY+" days";
+}
+</script>
+</head>
+<body>
+<p class="home">
+<a href="index.html">
+go to home
+</a>
+</p>
+<br><br><br><br><br>
+<h1>Age Calculator</h1>
+<br><br><br><br><br>
+<hr><br>
+<p id="x" style="font-size:50px;"></p>
+<button TYPE="button" onclick="CPU();">start</button>
+<br><hr><br>
+</body>
+</html>
