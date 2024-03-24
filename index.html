@@ -12,9 +12,25 @@
 
 
 <body>
-<h1 style="background:linear-gradient(to right,violet,indigo,blue,green,yellow,orange,red); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-Sanskar-projects
-</h1>
+<h1 id="heading">Computer Programming Projects</h1>
+<script>
+var i=1;
+function color()
+{
+var x;
+if(i==1){x="violet";}
+if(i==2){x="indigo";}
+if(i==3){x="blue";}
+if(i==4){x="green";}
+if(i==5){x="yellow";}
+if(i==6){x="orange";}
+if(i==7){x="red";}
+document.getElementById("heading").style.color=x;
+if(x<7){i+=1;}
+else{i=1;}
+}
+setInterval(color,500);
+</script>
 <br>
 <br>
 <br>
