@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Quiz Game</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+        }
+        #question {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Quiz Game</h1>
+    <div id="quiz-container"></div>
+    <button id="submit-btn">Submit Answer</button>
+    <p id="result"></p>
+
+    <script>
+        const quizData = {
+            "response_code": 0,
+            "results": [
+                // Your JSON data here (already provided)
+            ]
+        };
+
+        const quizContainer = document.getElementById('quiz-container');
+        const submitBtn = document.getElementById('submit-btn');
+        const resultPara = document.getElementById('result');
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function displayQuestion() {
+            const question = quizData.results[currentQuestion];
+
+            quizContainer.innerHTML = `
+                <p id="question">${question.question}</p>
+                <ul id="answer-list">
+                    </ul>
+            `;
+
+            const answerList = document.getElementById('answer-list');
+            question.incorrect_answers.forEach(answer => {
+                const radio = document.createElement('li');
+                radio.innerHTML = `
+                    <input type="radio" name="answer" value="${answer}">
+                    <label for="answer">${answer}</label>
+                `;
+                answerList.appendChild(radio);
+            });
+
+            const correctRadio = document.createElement('li');
+            correctRadio.innerHTML = `
+                <input type="radio" name="answer" value="${question.correct_answer}">
+                <label for="answer">${question.correct_answer}</label>
+            `;
+            answerList.appendChild(correctRadio);
+        }
+
+        function checkAnswer() {
+            const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+            if (selectedAnswer) {
+                if (selectedAnswer.value === quizData.results[currentQuestion].correct_answer) {
+                    score++;
+                    resultPara.textContent = `Correct! Your score is ${score} out of ${quizData.results.length}`;
+                } else {
+                    resultPara.textContent = `Incorrect. The correct answer is ${quizData.results[currentQuestion].correct_answer}`;
+                }
+                currentQuestion++;
+                submitBtn.disabled = true;
+            } else {
+                alert('Please select an answer before submitting.');
+            }
+        }
+
+        function checkGameOver() {
+            if (currentQuestion === quizData.results.length) {
+                resultPara.textContent = `Quiz completed! Your final score is ${score} out of ${quizData.results.length}`;
+                submitBtn.style.display = 'none';
+                return true;
+            }
+            return false;
+        }
+
+        displayQuestion();
+
+        submitBtn.addEventListener('click', () => {
+            checkAnswer();
+            if (!checkGameOver()) {
+                displayQuestion();
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
