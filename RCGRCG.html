@@ -1,0 +1,47 @@
+<html>
+<head>
+<link rel="stylesheet" href="pysda.css">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script>
+const m_array=['Will Smith','Vishal Dadlani','Vin Diesel','Varun Sharma','Varun Dhawan','Tom Holland','Tom Cruise','Tiger Shroff','Sunil Shetty','Sourabh Raaj','Sonu Sood','Simon Pegg','Shivaji Satam','Shankar Mahadevan','Shahid Kapoor','Sanjay Dutt','Salman Khan','Sachin Tendulkar','Ryan Reynolds','Ronit Roy','Rohit Purohit','Ranveer Singh','Rajat Verma','Rahul Gandhi','Pulkit Samrat','Pierce Brosnan','Neil Nitin','Nawazuddin Siddiqui','Naseeruddin Shah','Narendra Modi','Nana Patekar','Manoj Bajpayee','Kartik Aaryan','Johny Lever','John Abraham','Jeremy Renner','James Jude','Himesh Reshammiya','Dwayne Johnson','Chunky Panday','Chris Hemsworth','Ayushman Khurana','Arnold Schwarzenegger','Arjun Kapoor','Anupam Kher','Anu Malik','Amitabh Bachchan','Akshay Kumar','Ajay Devgn','Aamir Khan'];
+m_array.sort();
+var m="";
+function m_main()
+{
+const n=m_array.length;
+const r=Math.floor(Math.random()*n);
+const s=m_array[r];
+document.getElementById("m_id").innerHTML=r+1+". "+s;
+}
+function print()
+{
+let x="";
+for(let i=0;i<m_array.length;i++)
+{
+x+=i+1+". "+m_array[i]+"<br>";
+}
+document.getElementById("m_view").innerHTML="Items<br>sort: ascending<br>count: "+m_array.length+"<br>"+x;
+}
+</script>
+</head>
+<body>
+<p class="home">
+<a href="index.html">
+go to home
+</a>
+</p>
+<br><br><br><br><br>
+<h1>Random Item Generator</h1>
+<br><br><br><br><br>
+<hr><br>
+<p>Item</p>
+<br>
+<p id="m_id">No Item Selected</p>
+<br>
+<button type="button" onclick="m_main();">Generate</button>
+<hr>
+<button type="button" onclick="print();">View Complete Dataset</button>
+<br>
+<p id="m_view"></p>
+</body>
+</html>
